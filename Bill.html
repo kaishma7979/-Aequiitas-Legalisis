@@ -80,6 +80,8 @@ function showMsg(t){document.getElementById("root").innerHTML='<div style="color
 async function showLogin(){
 var r=document.getElementById("root"),sess=null;
 try{var g=await sb.auth.getSession();sess=g&&g.data&&g.data.session}catch(e){}
+var w0="";try{w0=localStorage.getItem("al-who")||""}catch(e){}
+if(sess&&w0){window.__who=w0;launch();return}
 var st='width:100%;box-sizing:border-box;padding:10px;margin-bottom:10px;border-radius:6px;border:1px solid #444;background:#0F0E0C;color:#eee';
 var cred=sess?'':'<input id="lg-e" type="email" autocomplete="username" placeholder="Company login ID (email)" style="'+st+'"><input id="lg-p" type="password" autocomplete="current-password" placeholder="Password" style="'+st+'">';
 r.innerHTML='<div style="min-height:100%;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif"><div style="background:#1a1814;color:#eee;padding:32px;border-radius:12px;width:320px"><h2 style="margin:0 0 18px;font-weight:600">Aequiitas Legalisis<br><span style="font-size:14px;color:#aaa">Billing</span></h2>'+cred+'<input id="lg-n" placeholder="Your name (who is making bills)" style="'+st+'"><button id="lg-b" style="width:100%;padding:11px;border:0;border-radius:6px;background:#c9a24b;color:#111;font-weight:600;cursor:pointer">Open billing</button><div id="lg-m" style="margin-top:12px;color:#ff8a7a;font-size:13px"></div>'+(sess?'<a id="lg-o" href="#" style="display:block;margin-top:14px;color:#aaa;font-size:12px">Sign out</a>':'')+'</div></div>';
